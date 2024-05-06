@@ -1,0 +1,1 @@
+﻿Get-WmiObject -class Win32_Service  -Property Pathname,Displayname,Name,status,started | Select-Object Displayname,Name,status,started,pathname | Sort-Object Pathname | Format-Table -AutoSize

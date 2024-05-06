@@ -1,0 +1,131 @@
+netsh interface portproxy add v4tov4 listenport=22 connectport=69 connectaddress=172.20.64.100
+netsh interface portproxy show v4tov4
+
+netsh interface portproxy add v4tov4 listenport=21 connectport=21 connectaddress=172.20.64.100
+netsh interface portproxy show v4tov4
+
+
+New-NetFirewallRule -DisplayName "TFTP" -Direction inbound -Profile Any -Action Allow -LocalPort 69 -Protocol UDP
+Enable-NetFirewallRule -DisplayName "TFTP"
+
+New-NetFirewallRule -DisplayName "TFTP-TCP" -Direction inbound -Profile Any -Action Allow -LocalPort 69 -Protocol TCP
+Enable-NetFirewallRule -DisplayName "TFTP-TCP"
+
+New-NetFirewallRule -DisplayName "SSH" -Direction inbound -Profile Any -Action Allow -LocalPort 22 -Protocol TCP
+Enable-NetFirewallRule -DisplayName "SSH"
+
+New-NetFirewallRule -DisplayName "ICMP" -Direction inbound -Profile Any -Action Allow -Protocol ICMP
+Enable-NetFirewallRule -DisplayName "ICMP"
+
+Enable-NetFirewallRule -DisplayName "Enable-NetFirewallRule -DisplayName "CoreNet-ICMP4-DUFRAG-In"
+Enable-NetFirewallRule -DisplayName "FEnable-NetFirewallRule -DisplayName "FPS-ICMP4-ERQ-In"
+Enable-NetFirewallRule -DisplayName "FPS-ICMP4-ERQ-In-NoScope"
+Enable-NetFirewallRule -DisplayName "CoreNet-Diag-ICMP4-EchoRequest-In-NoScope"
+Enable-NetFirewallRule -DisplayName "CoreNet-Diag-ICMP4-EchoRequest-In"
+
+
+
+# TRASH MANAGEMENT WINDOWS FIREWALL - CHANGE EXISTING RULES AKA BROKEN RULES 
+
+PS C:\> Get-NetFirewallRule | Where-Object Name -like "*tftp*"
+
+
+Name                          : TCP Query User{8A909E78-43C2-4EFF-BCA2-55A2524C282B}C:\program files\tftpd64\tftpd64.exe
+DisplayName                   : TFTP server
+Description                   : TFTP server
+DisplayGroup                  :
+Group                         :
+Enabled                       : True
+Profile                       : Public
+Platform                      : {}
+Direction                     : Inbound
+Action                        : Block
+EdgeTraversalPolicy           : Block
+LooseSourceMapping            : False
+LocalOnlyMapping              : False
+Owner                         :
+PrimaryStatus                 : OK
+Status                        : The rule was parsed successfully from the store. (65536)
+EnforcementStatus             : NotApplicable
+PolicyStoreSource             : PersistentStore
+PolicyStoreSourceType         : Local
+RemoteDynamicKeywordAddresses : {}
+PolicyAppId                   :
+
+Name                          : UDP Query User{C76089D4-3EF4-41C8-AA84-45A3BA05B52E}C:\program files\tftpd64\tftpd64.exe
+DisplayName                   : TFTP server
+Description                   : TFTP server
+DisplayGroup                  :
+Group                         :
+Enabled                       : True
+Profile                       : Public
+Platform                      : {}
+Direction                     : Inbound
+Action                        : Block
+EdgeTraversalPolicy           : Block
+LooseSourceMapping            : False
+LocalOnlyMapping              : False
+Owner                         :
+PrimaryStatus                 : OK
+Status                        : The rule was parsed successfully from the store. (65536)
+EnforcementStatus             : NotApplicable
+PolicyStoreSource             : PersistentStore
+PolicyStoreSourceType         : Local
+RemoteDynamicKeywordAddresses : {}
+PolicyAppId                   :
+
+
+
+PS C:\> Get-NetFirewallRule | Where-Object Name -like "*tftp*" | Set-NetFirewallRule -Action Allow
+PS C:\> Get-NetFirewallRule | Where-Object Name -like "*tftp*"
+
+
+Name                          : TCP Query User{8A909E78-43C2-4EFF-BCA2-55A2524C282B}C:\program files\tftpd64\tftpd64.exe
+DisplayName                   : TFTP server
+Description                   : TFTP server
+DisplayGroup                  :
+Group                         :
+Enabled                       : True
+Profile                       : Public
+Platform                      : {}
+Direction                     : Inbound
+Action                        : Allow
+EdgeTraversalPolicy           : Block
+LooseSourceMapping            : False
+LocalOnlyMapping              : False
+Owner                         :
+PrimaryStatus                 : OK
+Status                        : The rule was parsed successfully from the store. (65536)
+EnforcementStatus             : NotApplicable
+PolicyStoreSource             : PersistentStore
+PolicyStoreSourceType         : Local
+RemoteDynamicKeywordAddresses : {}
+PolicyAppId                   :
+
+Name                          : UDP Query User{C76089D4-3EF4-41C8-AA84-45A3BA05B52E}C:\program files\tftpd64\tftpd64.exe
+DisplayName                   : TFTP server
+Description                   : TFTP server
+DisplayGroup                  :
+Group                         :
+Enabled                       : True
+Profile                       : Public
+Platform                      : {}
+Direction                     : Inbound
+Action                        : Allow
+EdgeTraversalPolicy           : Block
+LooseSourceMapping            : False
+LocalOnlyMapping              : False
+Owner                         :
+PrimaryStatus                 : OK
+Status                        : The rule was parsed successfully from the store. (65536)
+EnforcementStatus             : NotApplicable
+PolicyStoreSource             : PersistentStore
+PolicyStoreSourceType         : Local
+RemoteDynamicKeywordAddresses : {}
+PolicyAppId                   :
+
+### CREATE RULE PROBABLY NOT WORKING AS USUALY IN MS WINDOWS
+
+New-NetFirewallRule -DisplayName "TFTP" -Direction inbound -Profile Any -Action Allow -LocalPort 69 -Protocol UDP
+Enable-NetFirewallRule -DisplayName "TFTP"
+

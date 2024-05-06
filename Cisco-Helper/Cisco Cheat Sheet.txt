@@ -1,0 +1,99 @@
+conf t 
+vlan 10 
+name vlan10 
+end
+
+
+###CONFIG VLAN interface #ip default-gateway 192.168.10.254 
+configure terminal 
+interface vlan 10 
+ip address 192.168.10.1 255.255.255.0 
+ip address dhcp 
+no shutdown 
+end
+
+###CONFIGURE PORTS
+configure terminal
+interface range Gigabitethernet 1/0/1-48
+switchport mode access
+switchport access vlan 10
+spanning-tree portfast
+speed auto 
+no shutdown 
+end 
+
+###ENABLE SSH
+configure terminal
+ip domain-name techem.local
+username cisco password cisco
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+end
+
+configure terminal
+line vty 0 15 
+login local
+end
+
+configure terminal
+line vty 0 15
+transport input ssh
+end
+
+###SSH from PC 
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c aes256-ctr  cisco@192.168.10.1
+
+###INSTALL FIRMWARE
+copy tftp://192.168.10.3/c2960x-universalk9-mz.152-2.E3.bin flash:
+
+show flash:
+
+config t 
+boot system flash:c2960x-universalk9-mz.152-2.E3.bin
+end
+
+show boot
+wr mem
+
+reload
+
+###BACKUP CONFIG
+.. 
+
+###RESTORE CONFIG
+copy tftp://192.168.10.3/config running-config
+
+
+#### CISCO PROVISIONING
+
+Basically what you are dong is joining two standalone switch's to become a stack, in that case suggest:
+
+1- active switch
+switch 1 priority 15
+switch 2 provision 5
+switch 3 provision 0
+switch 4 provision 0
+switch 5 provision 0
+
+
+2- new switch
+switch 1 priority 1
+
+save and shutdown
+
+3 - add new switch to active switch via stack cables and power on new switch
+
+#### FACTORY DEFEAULTS
+
+write erase
+delete flash:vlan.dat
+reload
+
+Once in ROMMON, use the following commands:
+
+flash_init
+load_helper
+rename flash:config.text flash:config.old
+boot
+
+

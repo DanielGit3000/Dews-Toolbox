@@ -1,0 +1,43 @@
+
+#WLAN-AP
+
+interface GigabitEthernet4/0/30
+ description WLAN-AP
+ switchport trunk native vlan 407
+ switchport trunk allowed vlan 404,407,414
+ switchport mode trunk
+ no logging event link-status
+ mls qos trust dscp
+ storm-control broadcast level bps 1m
+ storm-control multicast level pps 500
+ storm-control action trap
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+end
+
+
+#FAT CLIENT
+
+interface GigabitEthernet4/0/10
+ description access
+ switchport access vlan 404
+ switchport mode access
+ switchport voice vlan 402
+ no logging event link-status
+ authentication event fail retry 1 action authorize vlan 404
+ authentication event no-response action authorize vlan 404
+ authentication host-mode multi-domain
+ authentication port-control auto
+ authentication periodic
+ authentication timer reauthenticate 64800
+ mab
+ mls qos trust dscp
+ dot1x pae authenticator
+ dot1x timeout quiet-period 1
+ dot1x timeout tx-period 1
+ storm-control broadcast level bps 1m
+ storm-control multicast level pps 500
+ storm-control action trap
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+end

@@ -1,0 +1,26 @@
+#on server
+ssh-keygen -t rsa -b 4096 
+cat id_rsa.pub  >> authorized_keys
+chown daniel:daniel .ssh/
+chmod 700 .ssh
+chmod 600 .ssh/*
+sudo /etc/init.d/ssh restart
+
+#on client 
+scp daniel@172.21.133.47:/home/daniel/.ssh/id_rsa "C:\Users\dsc\id_rsa"
+ssh -i id_rsa daniel@172.21.133.47
+
+#disable Password Authentcation on server
+edit /etc/ssh/sshd_config
+############### DISABLED PASSWORD AUTH
+UsePAM no
+PasswordAuthentication no
+PermitRootLogin no
+############### END
+
+# create portnat if neeeded (on windows hypervisor)
+netsh interface portproxy add v4tov4 listenport=22 connectport=22 connectaddress=172.21.133.47
+netsh interface portproxy show v4tov4
+
+# delete portnat
+netsh interface portproxy delete v4tov4 listenport=22
