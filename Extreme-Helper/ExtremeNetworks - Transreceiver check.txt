@@ -1,0 +1,163 @@
+####################################################
+# show ports 45 no-refresh
+# *port 45 down ... link state R ( has to be Link state A)
+#
+# show ports 45 transceiver information detail
+# *port transreceiver dbm status -inf. means down (see low rates)
+####################################################
+
+switch01 # show ports 45 no-refresh
+Port Summary
+Port     Display              VLAN Name           Port  Link  Speed  Duplex
+#        String               (or # VLANs)        State State Actual Actual
+===========================================================================
+45       uplink               (0052)              E     R
+========================================================================
+   Port State: D-Disabled, E-Enabled, F-Disabled by link-flap detection,
+               L-Disabled due to licensing
+   Link State: A-Active, R-Ready, NP-Port not present, L-Loopback,
+               D-ELSM enabled but not up,
+               d-Ethernet OAM enabled but not up,
+               B-MACsec enabled but blocked awaiting authentication
+
+dot-210-eg-as039.3 # show vlan ports 45
+Untagged ports auto-move: Inform
+-----------------------------------------------------------------------------------------------
+Name            VID  Protocol Addr       Flags                         Proto  Ports  Virtual
+                                                                              Active router
+                                                                              /Total
+-----------------------------------------------------------------------------------------------
+v001   ----------------------------------------------    ANY    2 /3   VR-Default
+v002   ----------------------------------------------    ANY    2 /3   VR-Default
+v003   ----------------------------------------------    ANY    6 /7   VR-Default
+v004   ----------------------------------------------    ANY    2 /3   VR-Default
+
+--------------------------------------------------------------------------------------------
+Flags : (B) BFD Enabled, (c) 802.1ad customer VLAN, (C) EAPS Control VLAN,
+        (d) Dynamically created VLAN, (D) VLAN Admin Disabled,
+        (E) ESRP Enabled, (f) IP Forwarding Enabled,
+        (F) Learning Disabled, (i) ISIS Enabled,
+        (I) Inter-Switch Connection VLAN for MLAG, (k) PTP Configured,
+        (l) MPLS Enabled, (L) Loopback Enabled, (m) IPmc Forwarding Enabled,
+        (M) Translation Member VLAN or Subscriber VLAN, (n) IP Multinetting Enabled,
+        (N) Network Login VLAN, (o) OSPF Enabled, (O) Virtual Network Overlay,
+        (p) PIM Enabled, (P) EAPS protected VLAN, (r) RIP Enabled,
+        (R) Sub-VLAN IP Range Configured, (s) Sub-VLAN, (S) Super-VLAN,
+        (t) Translation VLAN or Network VLAN, (T) Member of STP Domain,
+        (v) VRRP Enabled, (V) VPLS Enabled, (W) VPWS Enabled,
+        (Y) Policy Enabled
+
+Total number of VLAN(s) : 55 (52 displayed)
+switch01 # show po
+  policy          Apply the filter-id attribute
+  ports           Physical ports
+  power           Power Configuration
+switch01 # show ports 45 transceiver ?
+  information     Transceiver information
+switch01 # show ports 45 transceiver information ?
+  <cr>            Execute the command
+  basic           Basic transceiver information
+  detail          Detailed transceiver information
+  |               Filter the output of the command
+switch01 # show ports 45 transceiver information basic
+
+Port :  45
+
+    Media Type            : LX
+    SKU                   : N/A
+    Vendor Name           : FLEXOPTIX
+    Vendor Date           : 01/21/21
+    Vendor Revision       : A
+    Part Number           : ABCD-1
+    Serial Number         : 01234567
+=================================================================================
+      N/A  - parameter not applicable to transceiver connected to the port
+
+
+############################################################################
+# NO LINK -inf shown at TX and RX Power 
+############################################################################
+
+dot-210-eg-as039.5 # show ports 45 transceiver information detail
+
+Port :  45
+
+    Media Type            : LX
+    SKU                   : N/A
+    Vendor Name           : FLEXOPTIX
+    Vendor Date           : 01/21/21
+    Vendor Revision       : A
+    Part Number           : ABCD-1
+    Serial Number         : 01234567
+    Power Up Counter      : N/A
+    Wavelength            : 1310 nm
+
+    Temp (Celsius)            :  31.18      Status               :  Normal
+          Low Warn Threshold  : -42.00      High Warn Threshold  :  95.00
+          Low Alarm Threshold : -45.00      High Alarm Threshold :  110.00
+
+    Voltage AUX-1/Vcc (Volts) :  3.25       Status               :  Normal
+          Low Warn Threshold  :  3.05       High Warn Threshold  :  3.50
+          Low Alarm Threshold :  3.00       High Alarm Threshold :  3.60
+
+
+    Tx Power (dBm)            : -7.37       Status               :  Normal
+          Low Warn Threshold  : -9.00       High Warn Threshold  : -2.00
+          Low Alarm Threshold : -10.00      High Alarm Threshold : -1.00
+          Tx DDM              :  N/A        Tx DDM Last Gasp     :  N/A
+
+    Rx Power (dBm)            : -inf        Status               :  Low Alarm
+          Low Warn Threshold  : -22.01      High Warn Threshold  : -3.00
+          Low Alarm Threshold : -23.01      High Alarm Threshold : -2.00
+          Rx DDM              :  N/A        Rx DDM Last Gasp     :  N/A
+
+    Tx Bias Current (mA)      :  13.35      Status               :  Normal
+          Low Warn Threshold  :  3.00       High Warn Threshold  :  70.00
+          Low Alarm Threshold :  2.00       High Alarm Threshold :  80.00
+=================================================================================
+      N/A  - parameter not applicable to transceiver connected to the port
+      -inf - negative infinity, parameter not defined
+
+switch01 #
+
+############################################################################
+# LINK UP - LINK UP - LINK UP - LINK UP - LINK UP - LINK UP - LINK UP 
+############################################################################
+
+switch01 # show ports 45 transceiver information detail
+
+Port :  45
+
+    Media Type            : LX
+    SKU                   : N/A
+    Vendor Name           : FLEXOPTIX
+    Vendor Date           : 01/21/21
+    Vendor Revision       : A
+    Part Number           : ABCD-1
+    Serial Number         : 01234567
+    Power Up Counter      : N/A
+    Wavelength            : 1310 nm
+
+    Voltage AUX-1/Vcc (Volts) :  3.25       Status               :  Normal
+          Low Warn Threshold  :  3.05       High Warn Threshold  :  3.50
+          Low Alarm Threshold :  3.00       High Alarm Threshold :  3.60
+
+
+    Tx Power (dBm)            : -7.35       Status               :  Normal
+          Low Warn Threshold  : -9.00       High Warn Threshold  : -2.00
+          Low Alarm Threshold : -10.00      High Alarm Threshold : -1.00
+          Tx DDM              :  N/A        Tx DDM Last Gasp     :  N/A
+
+    Rx Power (dBm)            : -10.96      Status               :  Normal
+          Low Warn Threshold  : -22.01      High Warn Threshold  : -3.00
+          Low Alarm Threshold : -23.01      High Alarm Threshold : -2.00
+          Rx DDM              :  N/A        Rx DDM Last Gasp     :  N/A
+
+    Tx Bias Current (mA)      :  13.54      Status               :  Normal
+          Low Warn Threshold  :  3.00       High Warn Threshold  :  70.00
+          Low Alarm Threshold :  2.00       High Alarm Threshold :  80.00
+=================================================================================
+      N/A  - parameter not applicable to transceiver connected to the port
+      -inf - negative infinity, parameter not defined
+
+switch01 #
