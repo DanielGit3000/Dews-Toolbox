@@ -1,0 +1,60 @@
+
+Slot-1 SWITCH015 # show iparp 
+VR            Destination      Mac                Age  Static  VLAN          VID   Port
+VR-Default    192.168.10.1     xx:xx:xx:xx:xx:xx   20      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.11    xx:xx:xx:xx:xx:xx    4      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.110   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.111   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.131   xx:xx:xx:xx:xx:xx   20      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.132   xx:xx:xx:xx:xx:xx   20      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.133   xx:xx:xx:xx:xx:xx   20      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.134   xx:xx:xx:xx:xx:xx   20      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.135   xx:xx:xx:xx:xx:xx   20      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.136   xx:xx:xx:xx:xx:xx   20      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.143   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.144   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.215   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.229   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    2:3
+VR-Default    192.168.10.230   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    2:2
+VR-Default    192.168.10.231   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    2:8
+VR-Default    192.168.10.232   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    2:7
+VR-Default    192.168.10.233   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    2:1
+VR-Default    192.168.10.234   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    2:17
+VR-Default    192.168.10.235   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.236   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.237   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.238   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.239   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.240   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+VR-Default    192.168.10.241   xx:xx:xx:xx:xx:xx    3      NO  v0090-mgmt    90    1:47
+
+Dynamic Entries  :          26             Static Entries            :          0
+Pending Entries  :           0
+
+ARP address check:    Enabled              ARP refresh               :    Enabled
+Timeout          :          20 minutes     ARP Sender-Mac Learning   :   Disabled
+Locktime         :        1000 milliseconds
+Retransmit Time  :        1000 milliseconds
+Reachable Time   :      900000 milliseconds (Auto)
+Fast Convergence :         Off 
+
+ARP Global Settings
+Max Entries         :    12288 
+Max Pending Entries :      256 
+Max Proxy Entries   :      256 
+
+Slot-1 SWITCH016 # 
+Slot-1 SWITCH016 # 
+Slot-1 SWITCH016 # show port 1:24 vlan
+         Untagged  
+Port     /Tagged   VLAN Name(s)
+-------- --------  ------------------------------------------------------------
+client   Untagged  v1020-client
+         Tagged    v4009-loop-ctrl
+Slot-1 SWITCH017 # 
+Slot-1 SWITCH017 # 
+Slot-1 SWITCH017 # show nodealias ports 1:24
+Port   MAC Address          Alias ID  Time Last Learned    VID   Protocol  Source IP
+-----  -----------------  ----------  -------------------  ----  --------  ---------------
+1:24   xx:xx:xx:xx:xx:xx          16  05-23-2024 10:42:19  1020  ip        10.0.20.120
+Slot-1 SWITCH018 # exit
