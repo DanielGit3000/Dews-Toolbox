@@ -1,0 +1,39 @@
+#change hostname
+configure snmp sysname <name>
+
+#create admin user
+configure cli password prompting-only off
+create account admin test test1234
+configure cli password prompting-only on
+
+#enable ssh2
+enable ssh2
+
+#show ports
+show ports no-refresh
+
+#show vlans
+show vlan
+
+#create vlan
+create vlan <name> tag <id>
+
+#delete vlan 
+delete vlan <name>
+
+#remove vlan from interface
+configure vlan delete ports <number>
+
+#show tagged or untagged 
+show ports <number> vlan
+
+#add/delete vlan to port
+config ports <number> add vlan <name>  
+config ports <number> delete vlan <name>  
+
+#stack configuration 
+show stacking
+show stacking configuration 
+show slot
+show stacking detail
+show stacking stack-ports
