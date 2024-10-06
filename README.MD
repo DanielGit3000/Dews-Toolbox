@@ -1,1 +1,1 @@
-These are some of my daily needed tools to get around the struggles!
+These are some of my daily needs to get around the struggles!
